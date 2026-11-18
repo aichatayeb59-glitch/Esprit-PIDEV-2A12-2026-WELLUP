@@ -27,7 +27,7 @@ This project was developed as part of the PIDEV – 2nd Year Engineering Program
 
 ### Backend
 - PHP
-- Symfony
+- XAMPP(Apache)
 - MySQL
 
 ## Architecture
@@ -56,27 +56,19 @@ Developed at **Esprit School of Engineering – Tunisia**
 ## Getting Started
 
 ### Prerequisites
+- XAMPP (Apache + MySQL)
 - PHP
-- Composer
-- Symfony
-- MySQL
 - A web browser
 
 ### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/aichatayeb59-glitch/Esprit-PIDEV-2A12-2026-WELLUP.git
-   cd Esprit-PIDEV-2A12-2026-WELLUP
    ```
-2. Install dependencies:
-   ```bash
-   composer install
-   ```
-3. Configure the database connection (`.env` file) and import the database.
-4. Run the application:
-   ```bash
-   symfony server:start
-   ```
+2. Move the project folder to the `htdocs` directory of XAMPP (`C:\xampp\htdocs\wellup`).
+3. Start **Apache** and **MySQL** from the XAMPP Control Panel.
+4. Open **phpMyAdmin** (`http://localhost/phpmyadmin`), create a database, and import the `database.sql` file.
+5. Open the application in your browser: `http://localhost/wellup`
 
 ## Acknowledgments
 We would like to thank our teachers and **Esprit School of Engineering** for their guidance and support throughout this project.
