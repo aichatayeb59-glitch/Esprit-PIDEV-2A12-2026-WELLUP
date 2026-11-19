@@ -1,0 +1,115 @@
+
+body {
+    background-color: #eaf7ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0 2px 8px lightgray;
+}
+
+h1 {
+    color: #168aad;
+}
+
+h2 {
+    color: #1d3557;
+}
+
+.water-box {
+    background-color: white;
+    width: 70%;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px lightgray;
+}
+
+.progress-container {
+    background-color: #ddd;
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #168aad;
+    width: 25%;
+    height: 20px;
+    border-radius: 10px;
+    transition: width 0.4s;
+}
+
+input {
+    padding: 12px;
+    margin: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+button {
+    background-color: #168aad;
+    color: white;
+    padding: 12px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1d3557;
+}
+
+.reset-button {
+    background-color: #d9534f;
+}
+
+.reset-button:hover {
+    background-color: #a93226;
+}
+
+#historyList {
+    list-style: none;
+    padding: 0;
+}
+
+#historyList li {
+    background-color: #eaf7ff;
+    margin: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    color: #1d3557;
+}
+
+#message,
+#goalMessage {
+    color: #168aad;
+    font-weight: bold;
+}
+
+footer {
+    background-color: white;
+    padding: 15px;
+    color: #1d3557;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .water-box {
+        width: 85%;
+        padding: 15px;
+    }
+
+    input {
+        width: 80%;
+    }
+}
