@@ -1,0 +1,159 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6fb;
+    color: #263247;
+    line-height: 1.6;
+}
+
+
+header {
+    background: linear-gradient(135deg, #5267d9, #8495f5);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+
+main {
+    width: 90%;
+    max-width: 950px;
+    margin: 35px auto;
+}
+
+
+.form-section,
+.objectifs-section {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+    color: #5267d9;
+    margin-bottom: 20px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    padding: 12px;
+    border: 1px solid #d9deeb;
+    border-radius: 8px;
+    font-size: 15px;
+    width: 100%;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #5267d9;
+}
+
+
+button {
+    background-color: #5267d9;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #394dbb;
+}
+
+
+#listeObjectifs {
+    display: grid;
+    gap: 15px;
+}
+
+.objectif-card {
+    background-color: #f8f9ff;
+    border: 1px solid #e0e5f5;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.objectif-card h3 {
+    color: #3549b5;
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    background-color: #e0e5f5;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.progress-fill {
+    background-color: #5267d9;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    margin-top: 10px;
+}
+
+.edit-btn {
+    background-color: #e6a23c;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 600px) {
+    main {
+        width: 94%;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .form-section,
+    .objectifs-section {
+        padding: 18px;
+    }
+}
