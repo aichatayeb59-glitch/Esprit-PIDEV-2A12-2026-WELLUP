@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de l'hydratation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Suivi de l'hydratation 💧</h1>
+    </header>
+
+    <main>
+
+        <section class="water-box">
+            <h2>Mon suivi quotidien</h2>
+
+            <p>Objectif quotidien : 2000 ml</p>
+
+            <form action="ajouter.php" method="POST">
+                <input
+                    type="number"
+                    name="quantite"
+                    placeholder="Quantité en ml"
+                    min="1"
+                    required
+                >
+
+                <button type="submit">Ajouter</button>
+            </form>
+        </section>
+
+        <section class="water-box">
+            <h2>Historique des consommations</h2>
+
+            <a href="historique.php">
+                <button type="button">Voir mon historique</button>
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Prends soin de toi et bois de l'eau 💧</p>
+    </footer>
+
+</body>
+</html>
+
+
+
