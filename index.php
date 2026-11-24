@@ -1,6 +1,13 @@
 <?php
 // Point d'entrée unique : index.php?page=conseils
+ini_set('session.use_strict_mode', '1');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_samesite', 'Lax');
 session_start();
+if (isset($_GET['action'])) {
+    require __DIR__ . '/app/user_routes.php';
+    exit;
+}
 
 require_once __DIR__ . '/app/helpers.php';
 require_once __DIR__ . '/app/Models/Model.php';
