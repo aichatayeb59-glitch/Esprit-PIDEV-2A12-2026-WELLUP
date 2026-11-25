@@ -54,6 +54,31 @@ class AuthController
         $row = $stmt->fetch();
         return $row ? UserModel::fromArray($row) : null;
     }
+    private function existsByEmailOrUsername(string $email, string $username): bool
+    {
+        $stmt = $this->db->prepare('SELECT id FROM users WHERE email = :email OR username = :username LIMIT 1');
+        $stmt->execute(['email' => $email, 'username' => $username]);
+        return (bool) $stmt->fetch();
+    }
+
+
+    private function insertUser(UserModel $user): bool
+    {
+        try {
+            $stmt = $this->db->prepare(
+                'INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)'
+            );
+            return $stmt->execute([
+                'username' => $user->getUsername(),
+                'email'    => $user->getEmail(),
+                'password' => $user->getPassword(),
+                'role'     => $user->getRole(),
+            ]);
+        } catch (PDOException $e) {
+            return false; // e.g. duplicate key (race condition)
+        }
+    }
+
 
     /** Shared validation of username + email (register, profile edit, admin edit). */
     private function validateIdentity(string $username, string $email): array
@@ -74,7 +99,56 @@ class AuthController
     // ==============================================================
     // MEMBER 2 : registration (register, existsByEmailOrUsername, insertUser)
     // ==============================================================
+    public function register(array $post): array
+    {
+        $errors = [];
 
+        if (!$this->verifyCsrfToken($post['csrf_token'] ?? null)) {
+            $errors[] = "Jeton de sécurité invalide. Veuillez réessayer.";
+            return $errors;
+        }
+
+        $username        = trim($post['username'] ?? '');
+        $email           = trim($post['email'] ?? '');
+        $password        = $post['password'] ?? '';
+        $passwordConfirm = $post['password_confirm'] ?? '';
+
+        $errors = $this->validateIdentity($username, $email);
+        if ($password === '') {
+            $errors[] = "Tous les champs sont obligatoires.";
+        }
+        if (strlen($password) < 8) {
+            $errors[] = "Le mot de passe doit contenir au moins 8 caractères.";
+        }
+        if ($password !== $passwordConfirm) {
+            $errors[] = "Les mots de passe ne correspondent pas.";
+        }
+        $errors = array_values(array_unique($errors));
+        if (!empty($errors)) {
+            return $errors;
+        }
+
+        if ($this->existsByEmailOrUsername($email, $username)) {
+            $errors[] = "Cet e-mail ou ce nom d'utilisateur est déjà utilisé.";
+            return $errors;
+        }
+
+        // Secure password hashing (bcrypt via password_hash)
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Build the entity (role forced to 'user' - no self-promotion to admin)
+        $user = new UserModel();
+        $user->setUsername($username);
+        $user->setEmail($email);
+        $user->setPassword($hashedPassword);
+        $user->setRole('user');
+
+        if (!$this->insertUser($user)) {
+            $errors[] = "Une erreur est survenue lors de la création du compte.";
+        }
+
+        return $errors; // empty array = success
+    }
 
     // ==============================================================
     // MEMBER 3 : login, logout, logoutIfValid, session handling
